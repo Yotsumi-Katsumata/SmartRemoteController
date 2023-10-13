@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>スマートリモコン</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="style.css" media="screen">
+<script type="text/javascript" src="/webiopi.js"></script>
+<script type="text/javascript">
+webiopi().ready(function() {
+  $('#btn1').click(function(){
+    $('#btn1').css('background','#f88888');  // change of the button color
+        // calling pyhon function
+      var gettemp = function(macro,args,response){
+      $('#temp').val(response);
+      $('#btn1').css('background','#f8f8f8');  
+      }
+      webiopi().callMacro('temp', [], gettemp);
+  });
+
+  $('#btn2').click(function(){
+    $('#btn2').css('background','#f88888');
+    webiopi().callMacro('light_on', [],function(){
+    $('#btn2').css('background','#ffffcc');  
+    });
+  });
+  
+  $('#btn3').click(function(){
+    $('#btn3').css('background','#f88888');
+    webiopi().callMacro('tv_on', [],function(){
+    $('#btn3').css('background','#ead9ff'); 
+    });
+  });
+  
+   $('#btn4').click(function(){
+    $('#btn4').css('background','#f88888');
+    webiopi().callMacro('heating', [],function(){
+    $('#btn4').css('background','#ffc0cb'); 
+    });
+  });
+  
+   $('#btn5').click(function(){
+    $('#btn5').css('background','#f88888');
+    webiopi().callMacro('cooling', [],function(){
+    $('#btn5').css('background','#ccffff'); 
+    });
+  });
+  
+  $('#btn6').click(function(){
+    $('#btn6').css('background','#f88888');
+    webiopi().callMacro('dehumi', [],function(){
+    $('#btn6').css('background','#cbffd3'); 
+    });
+  });
+  
+  $('#btn7').click(function(){
+    $('#btn7').css('background','#f88888');
+    webiopi().callMacro('air_off', [],function(){
+    $('#btn7').css('background','#d3d3d3'); 
+    });
+  });
+});
+</script>
+</head>
+
+<body>
+<div id="wrapper">
+<header>
+  <div class="header">
+  スマホリモコン
+  </div>
+</header>
+<nav>
+  <div class="nav-zero">
+    <ul>
+      <li id="btn1" class="temp"><br />view<br/ ><br/ ></li>
+      <li id="btn2" class="light_on"><br />照明<br/ ><br/></li>
+      <li id="btn3" class="tv_on"><br />テレビ<br/ ><br/></li>
+    </ul>
+    <ul>
+      <li id="btn4" class="heating"><br />暖房<br/ ><br/></li>
+      <li id="btn5" class="cooling"><br />冷房<br/ ><br/></li>
+      <li id="btn6" class="dehumi"><br />除湿<br/ ><br/></li>
+    </ul>
+    <ul>
+      <li id="btn7" class="air_off"><br />エアコンオフ<br/ ><br/></li>
+    </ul>
+  </div>
+  <div class="clear"></div>
+</nav>
+<div id="contents">
+  <section>
+      <div>
+    今の室温は:<input type="text" id="temp" />
+    </div>
+  </section>
+</div>
+</div>
+</body>
+</html>
